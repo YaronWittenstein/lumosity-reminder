@@ -1,0 +1,27 @@
+{
+  "manifest_version": 2,
+  
+  "name": "Lumosity Reminder",
+  "description": "Reminds to exercise Lumosity",
+  "version": "0.1",
+
+  "background": {
+    "scripts": ["lumosity_reminder.js"]
+  },
+
+  "permissions": [
+    "alarms",
+    "tabs",
+    "http://www.lumosity.com/login/",
+    "https://www.lumosity.com/login/"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/19/brain-gray-19.png"
+  },
+
+  "icons": {
+    "48": "icons/48/brain-transparent-48.png",
+    "128": "icons/128/brain-transparent-128.png"
+  }
+}
