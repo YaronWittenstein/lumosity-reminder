@@ -16,12 +16,12 @@ function loginRequired(doc) {
 
 function updateLoginRequiredStatus() {
   chrome.browserAction.setTitle({ title: 'Login to Lumosity is required' });
-  chrome.browserAction.setIcon({ path: 'icons/19/brain-gray-19.png' });
+  chrome.browserAction.setIcon({ path: 'icons/19/brain-transparent-19.png' });
 }
 
 function updateNetworkConnectionProblem() {
   chrome.browserAction.setTitle({ title: 'Seems that Lumosity is currently unavailable. please check you network connection' });
-  chrome.browserAction.setIcon({ path: 'icons/19/brain-gray-19.png' });
+  chrome.browserAction.setIcon({ path: 'icons/19/brain-transparent-19.png' });
 }
 
 function navigateToCurrentLumosityTrainingPage(callback) {
@@ -155,13 +155,22 @@ function updateLumosityReminderIcon(todaysSessionStatus) {
   }
 }
 
-chrome.runtime.onInstalled.addListener(function(details){
-  console.log('lumosity_reminder was installed');
+function onInit() {
   chrome.browserAction.onClicked.addListener(function() {
-    chrome.tabs.create({ url: 'http://www.lumosity.com', active: true });
+    chrome.tabs.create({ url: 'http://www.lumosity.com/login', active: true });
   });
 
   updateTodaysLumosityTrainingStatus();
   registerPeriodicalLumosityStatusAlarm();
   registerLumosityStatusAlarmHandler();
+}
+
+chrome.runtime.onInstalled.addListener(function() {
+  console.log('lumosity-reminder#onInstalled...');
+  onInit();
+});
+
+chrome.runtime.onStartup.addListener(function() {
+  console.log('lumosity-reminder#onStartup...');
+  onInit();
 });

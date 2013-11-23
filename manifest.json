@@ -3,7 +3,7 @@
   
   "name": "Lumosity Reminder",
   "description": "Reminds to exercise Lumosity",
-  "version": "0.1",
+  "version": "0.1.2",
 
   "background": {
     "scripts": ["lumosity_reminder.js"]
